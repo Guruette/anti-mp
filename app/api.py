@@ -128,7 +128,6 @@ def mp_info(mp_id):
             key = item.replace('public_whip_dreammp', '')
             vote_id = re.findall(r'\d+', key)[0]
             # vote_set.add(vote_id)
-            print(key, vote_id)
 
             key = key.replace(vote_id + '_', '')
 
@@ -138,18 +137,32 @@ def mp_info(mp_id):
 
             if int(vote_id) in policies:
                 votes[vote_id]['name'] = policies[int(vote_id)]
+                # print(policies[int(vote_id)])
             else:
                 print(vote_id)
 
     for vote in votes:
         v = distance_meaning(votes[vote]['distance'])
         votes[vote]['vote'] = v
+        # print(votes[vote]['vote'],'***', votes[vote]['name'])
 
     return {
         'name': j['name'] if 'name' in j else "?",
         'party': j['party'] if 'party' in j else "Unknown party",
         'votes': votes
     }
+
+
+def print_mp_position(json_res):
+    for item, key in json_res.items():
+        if item == 'name' or item == 'party':
+            print('--------------------')
+            print(key)
+            print('--------------------')
+        else:
+            for v_item, v_key in key.items():
+                print(v_key['name'], '*****', v_key['vote'])
+
 
 
 def get_all_mps_ids():
@@ -206,8 +219,8 @@ def get_mp_json_from_file(mp_id):
     for value in data:
         for key, value in value.items():
             # print(key, value)
-            if int(key) == 10133:
-                print(value)
+            if int(key) == mp_id:
+                # print(value)
                 return value
 
 
@@ -240,8 +253,9 @@ if __name__ == "__main__":
     # get_mp_json_from_file(10133)
 
     # for id in ids:
-    #     mp_info(id)
-    mp_info(10133)
+    # mp_info(id)
+    json_res = mp_info(10162)
+    print_mp_position(json_res)
 
     # write_vote_ids()
     # find_vote_label()
