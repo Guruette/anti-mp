@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>MP finder</title>
+</head>
+<body>
+<div >
+    <h1>MP with his votes:</h1>
+    {% for item, key in json_res.items()   %}
+            {% if item == 'name' or item == 'party' %}
+                <p>--------------------</p>
+                <p>{{key}}</p>
+                <p>--------------------</p>
+            {% else %}
+                {% for v_item, v_key in key.items() %}
+                    <p>{{v_key['name']}} ***** {{ v_key['vote']}}</p>
+                {% endfor %}
+            {% endif %}
+
+    {% endfor %}
+</div>
+</body>
+</html>
