@@ -6,10 +6,15 @@
 <div >
     <h1>MP filtering system:</h1>
     <form action="{{ url_for('filtering') }}" method="POST" class=filtering>
-        <select name="drop_down">
+        <select name="policy">
           {% for policy in policies|sort %}
               <option value="{{ policy }}">{{ policy }}</option>
           {% endfor %}
+        </select>
+        <select name="vote">
+            <option value="against">against</option>
+            <option value="for">for</option>
+            <option value="either for or against">either for or against</option>
         </select>
      <input type="submit" value= "OK" >
     </form>

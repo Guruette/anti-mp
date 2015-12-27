@@ -17,8 +17,12 @@ def filtering():
     policies = mp.get_policies()
 
     if request.method == 'POST':
-        drop_down_value = request.form['drop_down']
-        print(str(drop_down_value) + ' is being selected')
+        policy = request.form['policy']
+        print(str(policy))
+
+        vote = request.form['vote']
+        print(str(vote))
+
 
     return render_template('filter.html', policies=policies)
 
