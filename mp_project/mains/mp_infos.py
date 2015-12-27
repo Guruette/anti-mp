@@ -171,12 +171,12 @@ def get_all_mps_ids():
     with f as data_file:
         data = json.load(data_file)
 
+    res={}
     for item in data:
-        res = item['person_id']
-        print(res)
+        res[item['person_id']]= item['name']
         # get_mp_info(res)
 
-    return data
+    return res
 
 
 def get_mp_info(mp_id):
@@ -250,15 +250,24 @@ def get_policies():
     return the list of policy names
     :return: list
     """
-    policy=policies.values()
+    policy = policies.values()
     return policy
 
+
+def get_all_jsons():
+    """
+    get all json files
+    :return:
+    """
+    ids = get_all_mps_ids()
+    for id in ids:
+        get_mp_json_from_file(id)
+
+
 if __name__ == "__main__":
-    # ids = get_all_mps_ids()
     # get_mp_json_from_file(10133)
 
     # for id in ids:
-    # mp_info(id)
     # json_res = mp_info(10162)
     # print_mp_position(json_res)
     print(get_policies())

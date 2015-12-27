@@ -4,6 +4,7 @@ import mains.mp_infos as mp
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '6r93dcjdJZ8s56468tA9c5CZZ31mVet2'
 
+
 @app.route('/')
 @app.route('/index.html')
 def index():
@@ -14,7 +15,14 @@ def index():
 
 @app.route('/filter.html', methods=['POST', 'GET'])
 def filtering():
+    # get all the policies
     policies = mp.get_policies()
+
+    # get all the MP ids
+    res = mp.get_all_mps_ids()
+    names = list(res.values())
+    ids = list(res.keys())
+    print(names)
 
     if request.method == 'POST':
         policy = request.form['policy']
@@ -23,8 +31,7 @@ def filtering():
         vote = request.form['vote']
         print(str(vote))
 
-
-    return render_template('filter.html', policies=policies)
+    return render_template('filter.html', policies=policies, names=names)
 
 
 if __name__ == '__main__':
