@@ -245,14 +245,22 @@ def find_vote_label():
                 print(vote_id)
 
 
+def get_policies():
+    """
+    return the list of policy names
+    :return: list
+    """
+    policy=policies.values()
+    return policy
+
 if __name__ == "__main__":
     # ids = get_all_mps_ids()
     # get_mp_json_from_file(10133)
 
     # for id in ids:
     # mp_info(id)
-    json_res = mp_info(10162)
-    print_mp_position(json_res)
-
+    # json_res = mp_info(10162)
+    # print_mp_position(json_res)
+    print(get_policies())
     # write_vote_ids()
     # find_vote_label()
