@@ -1,0 +1,18 @@
+<html>
+<head>
+    <title>MP finder</title>
+</head>
+<body>
+<div >
+    <h1>MP filtering system:</h1>
+    <form action="send_filter" method="post">
+        <select name="drop_down" onselect="">
+          {% for policy in policies|sort %}
+              <option value="{{ policy }}">{{ policy }}</option>
+          {% endfor %}
+        </select>
+     <!--   <input type="submit" value= "OK" > -->
+    </form>
+</div>
+</body>
+</html>
