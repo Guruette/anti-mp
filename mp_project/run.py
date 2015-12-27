@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, flash
 import mains.mp_infos as mp
 
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = '6r93dcjdJZ8s56468tA9c5CZZ31mVet2'
 
 @app.route('/')
 @app.route('/index.html')
@@ -16,8 +16,9 @@ def index():
 def filtering():
     policies = mp.get_policies()
 
-    # drop_down_value = request.form['drop_down']
-    # print("value  ",drop_down_value)
+    if request.method == 'POST':
+        drop_down_value = request.form['drop_down']
+        print(str(drop_down_value) + ' is being selected')
 
     return render_template('filter.html', policies=policies)
 
