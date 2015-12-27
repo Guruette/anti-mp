@@ -18,6 +18,15 @@
         </select>
      <input type="submit" value= "OK" >
     </form>
+    <div align="justify">
+        {% for id, name in results.items() %}
+            {%  if loop.index is divisibleby(2) %}
+                <font color="red"> {{ name }} , </font>
+            {% else %}
+                {{ name }} ,
+            {% endif %}
+        {% endfor %}
+    </div>
 </div>
 </body>
 </html>

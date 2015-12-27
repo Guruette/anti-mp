@@ -171,9 +171,9 @@ def get_all_mps_ids():
     with f as data_file:
         data = json.load(data_file)
 
-    res={}
+    res = {}
     for item in data:
-        res[item['person_id']]= item['name']
+        res[item['person_id']] = item['name']
         # get_mp_info(res)
 
     return res

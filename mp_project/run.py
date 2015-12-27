@@ -19,10 +19,9 @@ def filtering():
     policies = mp.get_policies()
 
     # get all the MP ids
-    res = mp.get_all_mps_ids()
-    names = list(res.values())
-    ids = list(res.keys())
-    print(names)
+    results = mp.get_all_mps_ids()
+    names = list(results.values())
+    ids = list(results.keys())
 
     if request.method == 'POST':
         policy = request.form['policy']
@@ -31,7 +30,7 @@ def filtering():
         vote = request.form['vote']
         print(str(vote))
 
-    return render_template('filter.html', policies=policies, names=names)
+    return render_template('filter.html', policies=policies, results=results)
 
 
 if __name__ == '__main__':
