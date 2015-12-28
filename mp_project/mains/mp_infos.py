@@ -192,6 +192,7 @@ def get_mp_info(mp_id):
     print(j)
 
     # write into file
+    os.chdir("..")
     open_file = open(os.path.join('data', 'mps_info.json'), 'a')
     with open_file as outfile:
         d_value = dict({mp_id: j})
@@ -206,6 +207,7 @@ def get_mp_json_from_file(mp_id):
     :return: json string
     """
     # read json dump file
+    os.chdir("..")
     fname = open(os.path.join('data', 'mps_info.json'))
 
     data = []
@@ -236,6 +238,7 @@ def find_vote_label():
     find all vote_ids that don't have labels
     :return: None
     """
+    os.chdir("..")
     input_file = open(os.path.join('data', 'vote_ids.txt'))
 
     # read vote ids from file
@@ -259,8 +262,8 @@ def get_all_jsons():
     get all json files
     :return:
     """
-    ids = get_all_mps_ids()
-    for id in ids:
+    res = get_all_mps_ids()
+    for id in res.keys():
         get_mp_json_from_file(id)
 
 
